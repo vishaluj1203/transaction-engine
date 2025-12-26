@@ -1,0 +1,81 @@
+{
+    "info": {
+        "_postman_id": "b3f09f53-eb2a-4247-a40c-372aaa46bc4a",
+        "name": "Transaction Engine",
+        "description": "Collection to verify the Backend API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "1. Health Check",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "health"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "2. Ingest Transaction (Webhook)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"transaction_id\": \"txn_123456789\",\n    \"source_account\": \"acc_source_001\",\n    \"destination_account\": \"acc_dest_002\",\n    \"amount\": 500.00,\n    \"currency\": \"USD\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8000/v1/webhooks/transactions",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "v1",
+                        "webhooks",
+                        "transactions"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "3. Get Transaction Status",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/v1/transactions/txn_123456789",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "v1",
+                        "transactions",
+                        "txn_123456789"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
